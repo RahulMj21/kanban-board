@@ -15,6 +15,7 @@
 		"validate": "npm run format && npm run check-types && npm run check-lint && npm run check-format && npm run build"
 	},
 	"dependencies": {
+		"@chakra-ui/icons": "^2.0.11",
 		"@chakra-ui/react": "^2.3.7",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
@@ -22,10 +23,16 @@
 		"@types/react": "18.0.25",
 		"@types/react-dom": "18.0.8",
 		"framer-motion": "^7.6.4",
+		"lodash": "^4.17.21",
 		"next": "13.0.2",
 		"react": "18.2.0",
+		"react-dnd": "^16.0.1",
+		"react-dnd-html5-backend": "^16.0.1",
 		"react-dom": "18.2.0",
-		"typescript": "4.8.4"
+		"react-textarea-autosize": "^8.3.4",
+		"typescript": "4.8.4",
+		"usehooks-ts": "^2.9.1",
+		"uuid": "^9.0.0"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.42.0",
