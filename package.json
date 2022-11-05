@@ -1,0 +1,36 @@
+{
+	"name": "kanban-board",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"prepare": "husky install",
+		"check-types": "tsc --pretty --noEmit",
+		"check-format": "prettier --check .",
+		"check-lint": "eslint . --ext ts --ext tsx --ext js",
+		"format": "prettier -w .",
+		"validate": "npm run format && npm run check-types && npm run check-lint && npm run check-format && npm run build"
+	},
+	"dependencies": {
+		"@types/node": "18.11.9",
+		"@types/react": "18.0.25",
+		"@types/react-dom": "18.0.8",
+		"next": "13.0.2",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"typescript": "4.8.4"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.42.0",
+		"eslint": "^8.26.0",
+		"eslint-config-next": "^13.0.2",
+		"eslint-config-prettier": "^8.5.0",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.7.1",
+		"typescript-eslint": "^0.0.1-alpha.0",
+		"husky": "^8.0.0"
+	}
+}

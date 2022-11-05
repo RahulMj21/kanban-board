@@ -1,0 +1,18 @@
+{
+	"root": true,
+	"extends": [
+		"next/core-web-vitals",
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"plugins": ["@typescript-eslint"],
+	"rules": {
+		"semi": ["error", "always"],
+		"quotes": ["error", "double"],
+		"@typescript-eslint/no-unused-vars": "error",
+		"@typescript-eslint/no-explicit-any": "error"
+	},
+
+	"ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
+}
