@@ -10,7 +10,7 @@ import {
 	Stack,
 	useColorModeValue,
 } from "@chakra-ui/react";
-import Task from "@/components/Task";
+import Task from "@/components/board/Task";
 
 interface Props {
 	column: EColumnType;
@@ -43,7 +43,7 @@ const TaskColumn = ({ column }: Props) => {
 	));
 
 	return (
-		<Box minW={{ base: 250, lg: 280 }}>
+		<Box minW={240} maxW={280}>
 			<Heading fontSize="md" mb={4} letterSpacing="wide">
 				<Badge
 					px={2}
@@ -67,10 +67,12 @@ const TaskColumn = ({ column }: Props) => {
 			<Stack
 				h={600}
 				mt={2}
-				spacing={4}
-				bgColor={useColorModeValue("gray.50", "gray.900")}
+				spacing={3}
+				bgGradient={`linear(to-b, ${useColorModeValue(
+					"gray.50",
+					"gray.900"
+				)},${useColorModeValue("white", "gray.800")})`}
 				rounded="lg"
-				boxShadow="md"
 				overflow="auto"
 			>
 				{ColumnTasks}
