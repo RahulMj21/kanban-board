@@ -37,6 +37,7 @@ const Task = ({ task }: Props) => {
 			/>
 			<Textarea
 				value={task.title}
+				onChange={() => null}
 				fontWeight="semibold"
 				cursor="inherit"
 				border="none"
