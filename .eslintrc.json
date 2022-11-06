@@ -8,8 +8,6 @@
 	],
 	"plugins": ["@typescript-eslint"],
 	"rules": {
-		"semi": ["error", "always"],
-		"quotes": ["error", "double"],
 		"@typescript-eslint/no-unused-vars": "error",
 		"@typescript-eslint/no-explicit-any": "error"
 	},
