@@ -1,5 +1,8 @@
 import Board from "@/components/board/Board";
+import useIsWindow from "@/hooks/useIsWindow";
 
 export default function Home() {
-	return <Board />;
+	const { isWindow } = useIsWindow();
+
+	return isWindow && <Board />;
 }
