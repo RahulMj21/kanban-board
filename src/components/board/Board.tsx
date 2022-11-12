@@ -1,6 +1,8 @@
 import { EColumnType } from "@/utils/enums";
 import { Box, Heading, Flex } from "@chakra-ui/react";
 import TaskColumn from "@/components/board/TaskColumn";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const Board = () => {
 	return (
@@ -15,27 +17,29 @@ const Board = () => {
 			>
 				D-2-D Kanban Board
 			</Heading>
-			<Flex
-				minW="100%"
-				align="center"
-				py="10"
-				overflow="auto"
-				gap={5}
-				sx={{
-					"&::-webkit-scrollbar": {
-						width: 0,
-					},
-					"&::-webkit-scrollbar-thumb": {
-						display: "none",
-					},
-				}}
-			>
-				<TaskColumn column={EColumnType.TO_DO} />
-				<TaskColumn column={EColumnType.BLOCKED} />
-				<TaskColumn column={EColumnType.IN_PROGRESS} />
-				<TaskColumn column={EColumnType.TEST} />
-				<TaskColumn column={EColumnType.COMPLETED} />
-			</Flex>
+			<DndProvider backend={HTML5Backend}>
+				<Flex
+					minW="100%"
+					align="center"
+					py="10"
+					overflow="auto"
+					gap={5}
+					sx={{
+						"&::-webkit-scrollbar": {
+							width: 0,
+						},
+						"&::-webkit-scrollbar-thumb": {
+							display: "none",
+						},
+					}}
+				>
+					<TaskColumn column={EColumnType.TO_DO} />
+					<TaskColumn column={EColumnType.BLOCKED} />
+					<TaskColumn column={EColumnType.IN_PROGRESS} />
+					<TaskColumn column={EColumnType.TEST} />
+					<TaskColumn column={EColumnType.COMPLETED} />
+				</Flex>
+			</DndProvider>
 		</Box>
 	);
 };

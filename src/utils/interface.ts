@@ -6,3 +6,9 @@ export interface ITask {
 	column: EColumnType;
 	color: string;
 }
+
+export interface IDragItem {
+	index: number;
+	id: ITask["id"];
+	from: EColumnType;
+}
