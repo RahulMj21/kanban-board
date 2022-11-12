@@ -1,4 +1,5 @@
 import Task from "@/components/board/Task";
+import useColumnDrops from "@/hooks/useColumnDrop";
 import useColumnTasks from "@/hooks/useColumnTasks";
 import { COLUMN_COLOR_SCHEMA } from "@/utils/const";
 import { EColumnType } from "@/utils/enums";
@@ -17,8 +18,15 @@ interface Props {
 }
 
 const TaskColumn = ({ column }: Props) => {
-	const { tasks, addEmptyTask, updateTask, deleteTask } =
+	const { tasks, addEmptyTask, updateTask, deleteTask, dropTaskFrom } =
 		useColumnTasks(column);
+	const { isOver, dropRef } = useColumnDrops({
+		column,
+		handleDrop: dropTaskFrom,
+	});
+
+	const iconColor = useColorModeValue("gray.500", "gray.400");
+	const iconBgColor = useColorModeValue("gray.100", "gray.700");
 
 	const ColumnTasks = tasks.map((task, index) => (
 		<Task
@@ -29,11 +37,9 @@ const TaskColumn = ({ column }: Props) => {
 			deleteTask={deleteTask}
 		/>
 	));
-	const iconColor = useColorModeValue("gray.500", "gray.400");
-	const iconBgColor = useColorModeValue("gray.100", "gray.700");
 
 	return (
-		<Box minW={240} maxW={280}>
+		<Box w={250}>
 			<Heading fontSize="md" mb={4} letterSpacing="wide">
 				<Badge
 					px={2}
@@ -56,6 +62,7 @@ const TaskColumn = ({ column }: Props) => {
 				onClick={addEmptyTask}
 			/>
 			<Stack
+				ref={dropRef}
 				h={600}
 				mt={2}
 				spacing={3}
@@ -65,6 +72,9 @@ const TaskColumn = ({ column }: Props) => {
 				)},${useColorModeValue("white", "gray.800")})`}
 				rounded="lg"
 				overflow="auto"
+				opacity={isOver ? 0.8 : 1}
+				transition="0.4s ease"
+				p="4"
 			>
 				{ColumnTasks}
 			</Stack>

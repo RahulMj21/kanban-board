@@ -83,11 +83,33 @@ const useColumnTasks = (column: EColumnType) => {
 		[setTasks, column, toast]
 	);
 
+	const dropTaskFrom = useCallback(
+		(from: EColumnType, id: ITask["id"]) => {
+			setTasks((allTasks) => {
+				const fromColumnTasks = allTasks[from];
+				const toColumnTasks = allTasks[column];
+				const movingTask = fromColumnTasks.find(
+					(task) => task.id === id
+				);
+
+				if (!movingTask) return allTasks;
+
+				return {
+					...allTasks,
+					[from]: fromColumnTasks.filter((task) => task.id !== id),
+					[column]: [{ ...movingTask, column }, ...toColumnTasks],
+				};
+			});
+		},
+		[setTasks, column]
+	);
+
 	return {
 		tasks: tasks[column],
 		addEmptyTask,
 		updateTask,
 		deleteTask,
+		dropTaskFrom,
 	} as const;
 };
 

@@ -1,3 +1,4 @@
+import { useTaskDrag } from "@/hooks/useTaskDrag";
 import { ITask } from "@/utils/interface";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Box, IconButton, Textarea } from "@chakra-ui/react";
@@ -10,7 +11,12 @@ interface Props {
 	deleteTask: (id: ITask["id"]) => void;
 }
 
-const Task = ({ task, updateTask, deleteTask }: Props) => {
+const Task = ({ index, task, updateTask, deleteTask }: Props) => {
+	const { ref, isDragging } = useTaskDrag<HTMLDivElement>({
+		task,
+		index,
+	});
+
 	const handleUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {
 		updateTask(task.id, { ...task, title: e.target.value });
 	};
@@ -21,6 +27,7 @@ const Task = ({ task, updateTask, deleteTask }: Props) => {
 
 	return (
 		<Box
+			ref={ref}
 			role="group"
 			position="relative"
 			rounded="lg"
@@ -32,6 +39,8 @@ const Task = ({ task, updateTask, deleteTask }: Props) => {
 			boxShadow="xl"
 			cursor="grab"
 			bgColor={task.color}
+			transition="0.4s ease"
+			opacity={isDragging ? 0.5 : 1}
 		>
 			<IconButton
 				position="absolute"

@@ -5,3 +5,7 @@ export enum EColumnType {
 	TEST = "Test",
 	COMPLETED = "Completed",
 }
+
+export enum EItemType {
+	TASK = "Task",
+}
