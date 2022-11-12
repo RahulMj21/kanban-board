@@ -1,13 +1,24 @@
 import { ITask } from "@/utils/interface";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Box, IconButton, Textarea } from "@chakra-ui/react";
+import { ChangeEvent } from "react";
 
 interface Props {
 	index: number;
 	task: ITask;
+	updateTask: (id: ITask["id"], updatedTask: ITask) => void;
+	deleteTask: (id: ITask["id"]) => void;
 }
 
-const Task = ({ task }: Props) => {
+const Task = ({ task, updateTask, deleteTask }: Props) => {
+	const handleUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {
+		updateTask(task.id, { ...task, title: e.target.value });
+	};
+
+	const handleDelete = () => {
+		deleteTask(task.id);
+	};
+
 	return (
 		<Box
 			role="group"
@@ -34,10 +45,9 @@ const Task = ({ task }: Props) => {
 				icon={<DeleteIcon />}
 				opacity={0}
 				_groupHover={{ opacity: 1 }}
+				onClick={handleDelete}
 			/>
 			<Textarea
-				value={task.title}
-				onChange={() => null}
 				fontWeight="semibold"
 				cursor="inherit"
 				border="none"
@@ -47,6 +57,8 @@ const Task = ({ task }: Props) => {
 				maxH={200}
 				focusBorderColor="none"
 				color="gray.700"
+				value={task.title}
+				onChange={handleUpdate}
 			/>
 		</Box>
 	);

@@ -13,7 +13,7 @@ const Board = () => {
 				bgClip="text"
 				mt={4}
 			>
-				DtoD Kanban Board
+				D-2-D Kanban Board
 			</Heading>
 			<Flex
 				minW="100%"

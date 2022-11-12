@@ -7,3 +7,5 @@ export const COLUMN_COLOR_SCHEMA: Record<EColumnType, string> = {
 	Test: "orange",
 	Completed: "green",
 };
+
+export const MAX_TASKS_PER_COLUMN = 100;
