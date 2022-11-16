@@ -18,8 +18,14 @@ interface Props {
 }
 
 const TaskColumn = ({ column }: Props) => {
-	const { tasks, addEmptyTask, updateTask, deleteTask, dropTaskFrom } =
-		useColumnTasks(column);
+	const {
+		tasks,
+		addEmptyTask,
+		updateTask,
+		deleteTask,
+		dropTaskFrom,
+		swapTasks,
+	} = useColumnTasks(column);
 	const { isOver, dropRef } = useColumnDrops({
 		column,
 		handleDrop: dropTaskFrom,
@@ -35,6 +41,7 @@ const TaskColumn = ({ column }: Props) => {
 			index={index}
 			updateTask={updateTask}
 			deleteTask={deleteTask}
+			onDropHover={swapTasks}
 		/>
 	));
 
@@ -74,7 +81,6 @@ const TaskColumn = ({ column }: Props) => {
 				overflow="auto"
 				opacity={isOver ? 0.8 : 1}
 				transition="0.4s ease"
-				p="4"
 			>
 				{ColumnTasks}
 			</Stack>

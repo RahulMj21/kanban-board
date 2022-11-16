@@ -1,4 +1,4 @@
-import { useTaskDrag } from "@/hooks/useTaskDrag";
+import { useTaskDragAndDrop } from "@/hooks/useTaskDragAndDrop";
 import { ITask } from "@/utils/interface";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Box, IconButton, Textarea } from "@chakra-ui/react";
@@ -9,12 +9,14 @@ interface Props {
 	task: ITask;
 	updateTask: (id: ITask["id"], updatedTask: ITask) => void;
 	deleteTask: (id: ITask["id"]) => void;
+	onDropHover: (i: number, j: number) => void;
 }
 
-const Task = ({ index, task, updateTask, deleteTask }: Props) => {
-	const { ref, isDragging } = useTaskDrag<HTMLDivElement>({
+const Task = ({ index, task, updateTask, deleteTask, onDropHover }: Props) => {
+	const { ref, isDragging } = useTaskDragAndDrop<HTMLDivElement>({
 		task,
 		index,
+		handleDropHover: onDropHover,
 	});
 
 	const handleUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {

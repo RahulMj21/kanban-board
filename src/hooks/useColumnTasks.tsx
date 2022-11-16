@@ -5,7 +5,7 @@ import { ITask } from "@/utils/interface";
 import useTasksCollection from "@/hooks/useTasksCollection";
 import { MAX_TASKS_PER_COLUMN } from "@/utils/const";
 import { AlertIcon, useToast } from "@chakra-ui/react";
-import { pickChakraRandomColor } from "@/utils/helpers";
+import { pickChakraRandomColor, swap } from "@/utils/helpers";
 import { CheckIcon } from "@chakra-ui/icons";
 
 const useColumnTasks = (column: EColumnType) => {
@@ -104,12 +104,26 @@ const useColumnTasks = (column: EColumnType) => {
 		[setTasks, column]
 	);
 
+	const swapTasks = useCallback(
+		(i: number, j: number) => {
+			setTasks((allTasks) => {
+				const columnTasks = allTasks[column];
+				return {
+					...allTasks,
+					[column]: swap(columnTasks, i, j),
+				};
+			});
+		},
+		[setTasks, column]
+	);
+
 	return {
 		tasks: tasks[column],
 		addEmptyTask,
 		updateTask,
 		deleteTask,
 		dropTaskFrom,
+		swapTasks,
 	} as const;
 };
 

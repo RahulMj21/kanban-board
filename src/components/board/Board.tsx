@@ -3,10 +3,12 @@ import { Box, Heading, Flex } from "@chakra-ui/react";
 import TaskColumn from "@/components/board/TaskColumn";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import DarkModeToggleButton from "@/components/layout/DarkModeToggleButton";
 
 const Board = () => {
 	return (
 		<Box as="section" w="1600px" maxW="95%" m="auto">
+			<DarkModeToggleButton aria-label="dark-mode-toggle" />
 			<Heading
 				fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
 				fontWeight="bold"
